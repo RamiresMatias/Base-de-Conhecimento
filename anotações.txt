@@ -1,0 +1,17 @@
+Dependências : {
+    "pg": Driver do postgres.
+    "mongoose": Para conectar no mongodb
+    "moment": Biblioteca javascript para data
+    "knex": Biblioteca para acessar banco de dados relacional
+    "consign": Consign é um módulo que auxilia na abstração dos demais módulos e gerenciamento das dependências
+    "bcrypt-node" : Encriptar a senha do usuário e salvar no banco 
+    "body-parser": Biblioteca para interpretar os diferentes formatos de dados recebidos do front-end
+    "cors": Utilizado para liberar acesso da API com as demais aplicações
+}
+
+arquivo knexfile : Arquivo que irá armazenar a conexão com o banco de dados
+
+comandos terminal:{
+    knex migrate:latest : Comando para rodar até a última migration
+    knex migrate
+}
