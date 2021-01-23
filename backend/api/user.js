@@ -16,9 +16,10 @@ module.exports = app => {
     const save = async (req, res) => {
         const user = { ...req.body };
         /* caso venha um id pelos parâmetros, o objeto user receberá esse id */
-        if (req.params.id) {
-            user.id = req.params.id;
-        }
+        if (req.params.id) user.id = req.params.id;
+
+        if (!req.originalUrl.startsWith('/users')) user.admin = false
+        if (!req.user || !req.user.admin) user.admin = false
 
         try {
             /* Validando se os dados enviados */
