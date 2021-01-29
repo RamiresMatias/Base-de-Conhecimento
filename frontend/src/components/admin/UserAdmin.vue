@@ -91,21 +91,32 @@
         ></b-button>
       </template>
     </b-table>
-    <b-pagination
-      size="md"
-      v-model="page"
-      :total-rows="rows"
-      :per-page="limit"
-      id="my-table"
-    ></b-pagination>
+    <b-row class="pagination-excel">
+      <b-pagination
+        size="md"
+        v-model="page"
+        :total-rows="rows"
+        :per-page="limit"
+        id="my-table"
+      ></b-pagination>
+      <VueExcel
+        :data="users"
+        :fields="usersJson"
+        type="xls"
+        class="btn btn-primary vue-excel"
+        >Exportar Dados(xls)</VueExcel
+      >
+    </b-row>
   </div>
 </template>
 
 <script>
+import VueExcel from "vue-json-excel";
 import axios from "axios";
 import { baseApiUrl, showError } from "@/config/global.js";
 export default {
   name: "UserAdmin",
+  components: { VueExcel },
   data: function () {
     return {
       mode: "save",
@@ -125,6 +136,19 @@ export default {
         },
         { key: "actions", label: "Ações" },
       ],
+      usersJson: {
+        Código: "id",
+        Nome: "name",
+        "E-mail": "email",
+        Administrador: {
+          //No caso admin
+          field: "admin",
+          // Aplique está formatação, se for true retorne 'sim'
+          callback: (value) => {
+            return value === true ? "Sim" : "Não";
+          },
+        },
+      },
     };
   },
   computed: {
@@ -181,4 +205,17 @@ export default {
 </script>
 
 <style>
+.vue-excel {
+  height: 50px;
+  width: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination-excel {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 15px;
+}
 </style>
