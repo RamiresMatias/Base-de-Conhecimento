@@ -15,3 +15,67 @@ comandos terminal:{
     knex migrate:latest : Comando para rodar até a última migration
     knex migrate
 }
+
+Diretivas :{
+    v-html="article.content" - Essa diretiva renderiza um conteúdo HTML. No caso o objeto article.content guarda um código HTML
+    que a diretiva irá renderizar.
+}
+
+
+===================== CSS =========================
+
+    {
+        Esta propriedade especifica quanto do espaço restante no flex container deve ser atribuído ao item
+        O espaço restante é o tamanho do flex container menos o tamanho de todos os tamanhos de flex items juntos.  */
+        flex-grow: 1;
+
+        grid-area: <Nome do componente> = O grid area define que aquele componente ou elemento fará parte de um grid-template
+
+        * Propriedades para suavizar as fontes da aplicação durante a renderização */
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+
+        display: grid;
+
+        Definindo 3 linhas no template grid. A primeira 60px, 1 frame e 40 px. O primeiro será o header com 60px
+        O content irá ocupar o máximo que der 1 frame. E o rodapé Footer irá ocupar 40px 
+        grid-template-rows: 60px 1fr 40px;
+
+        Terá duas colunas. A primeira contendo o menu da aplicação com 300px de largura e o resto irá caber no der 
+        grid-template-columns: 300px 1fr;
+
+        Definido as áreas e onde os componentes irão se encaixar nessas áreas 
+        grid-template-areas:
+            "header header"  Na primeira linha será o header que irá ocupar de uma ponta até a outra 
+            "menu content" /A segunda linha será o Menu e Content 
+            "menu footer";  Na terceira será o menu novamente junto com o Footer 
+
+            :class="{ 'hide-menu': !isMenuVisible }" - Essa condição mostra que se o atributo isMenuVisible for verdadeiro. Ele irá
+            aplicar a classe hide-menu
+
+            flex-wrap: wrap - Essa propriedade permite que a linha quebre, separando os items na linha debaixo quando a tela for
+            muito pequena
+    }
+
+======================= Bibliotecas ==========================
+
+    {
+        Vue Toasted:{
+            Vue Toasted é um plugin que é utilizado para exibir pequenas mensagens na tela.
+
+            Na configuração do Vue Toasted deve ser ajustado o tempo da mensagem e biblioteca de icones ao qual
+            ele utilizará. 
+
+            Exemplo : {
+                    Vue.use(Toasted, {
+                        iconPack: 'fontawesome',
+                        duration: 3000
+                    })
+                
+            }
+
+        }  
+    }
+
+
+}
