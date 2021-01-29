@@ -6,6 +6,7 @@ import AdminPages from "@/components/admin/AdminPages.vue"
 import ArticlesByCategory from "@/components/article/ArticlesByCategory.vue"
 import ArticlesById from "@/components/article/ArticleById.vue";
 import Auth from "../components/auth/Auth.vue"
+import { userKey } from "./global.js"
 
 Vue.use(VueRouter)
 
@@ -17,7 +18,8 @@ const routes = [{
 {
     name: "adminPages",
     path: "/admin",
-    component: AdminPages
+    component: AdminPages,
+    meta: { requiresAdmin: true }
 },
 {
     name: "articlesByCategory",
@@ -35,9 +37,25 @@ const routes = [{
     component: Auth
 }]
 
-export default new VueRouter({
+const router = new VueRouter({
     mode: "history",
     routes
 });
+
+/* Método para validar se o usuário é admin. Passa três parâmetros, de onde veio, para onde vai, e se prosseguirá */
+router.beforeEach((to, from, next) => {
+    const json = localStorage.getItem(userKey)
+
+    /* Se a URL tem requiresAdmin ele valida o usuário setado */
+    if (to.matched.some(record => record.meta.requiresAdmin)) {
+        const user = JSON.parse(json)
+        /* Se for admin ele passa pro next() , se não ele passa para a rota principal */
+        user && user.admin ? next() : next({ path: '/' })
+    } else {
+        next()
+    }
+})
+
+export default router
 
 

@@ -51,6 +51,11 @@ export default {
 
       if (res.data) {
         this.$store.commit("setUser", userData);
+
+        /* Validando o dispositivo do usuário, caso seja um devide com tamanho sm ou xs ele fecha o menu */
+        if (this.$mq === "xs" || this.$mq === "sm") {
+          this.$store.commit("toggleMenu", false);
+        }
       } else {
         localStorage.removeItem(userKey);
         this.$router.push({ name: "auth" });

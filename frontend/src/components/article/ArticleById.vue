@@ -10,6 +10,8 @@
 </template>
 
 <script>
+import "highlightjs/styles/monokai.css";
+import hljs from "highlightjs/highlight.pack.js";
 import { baseApiUrl } from "@/config/global.js";
 import axios from "axios";
 import PageTitle from "../template/PageTitle";
@@ -24,6 +26,13 @@ export default {
   mounted() {
     const url = `${baseApiUrl}/articles/${this.$route.params.id}`;
     axios.get(url).then((res) => (this.article = res.data));
+  },
+  updated() {
+    /* Aplicando highlight nos artigos que possuem código, para que o tema fica do tipo monokai.
+    Então ele navega em cada tag pre onde está renderizando os artigos com código e inseri o highlight */
+    document.querySelectorAll(".article-content pre").forEach((e) => {
+      hljs.highlightBlock(e);
+    });
   },
 };
 </script>
