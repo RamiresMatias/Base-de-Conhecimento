@@ -1,7 +1,7 @@
 <template>
   <div class="auth-content">
     <div class="auth-modal">
-      <img src="@/assets/logo.png" width="200" alt="logo" />
+      <img src="@/assets/knowledge.png" width="200" height="80" alt="logo" />
       <hr />
       <div class="auth-title">{{ showSignup ? "Cadastro" : "Login" }}</div>
       <input

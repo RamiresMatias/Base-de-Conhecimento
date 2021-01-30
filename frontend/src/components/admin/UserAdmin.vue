@@ -153,7 +153,8 @@ export default {
   },
   computed: {
     rows() {
-      /* Quantidade de users para retornar limite total de linhas na tabela */
+      /* Quantidade de users para retornar limite total de linhas na tabela
+      para paginação */
       return this.users.length;
     },
   },
